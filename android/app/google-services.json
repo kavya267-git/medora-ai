@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "643095045949",
+    "project_id": "medora-bb341",
+    "storage_bucket": "medora-bb341.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:643095045949:android:83b8c0a4b93d5c38dac754",
+        "android_client_info": {
+          "package_name": "com.example.medora"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaTcBBeEOmpVdldwMqMpOqdsdJulOU_UE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:643095045949:android:8e0eac6154e1c144dac754",
+        "android_client_info": {
+          "package_name": "com.example.medora_new"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaTcBBeEOmpVdldwMqMpOqdsdJulOU_UE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

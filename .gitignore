@@ -1,0 +1,48 @@
+# Flutter/Dart
+.dart_tool/
+.build/
+.packages
+.pub/
+.pub-cache/
+pubspec.lock
+flutter_export_environment.sh
+
+# Build outputs
+build/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/Pods/
+ios/Runner.xcworkspace/
+ios/Flutter/ephemeral/
+*.xcworkspace
+*.xcuserstate
+*.lock
+
+# Android
+android/.gradle/
+android/app/build/
+android/local.properties
+
+# Web
+web/manifest.json
+web/favicon.png
+web/icons/
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Mac/Linux
+*.DS_Store
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Misc
+*.bak
