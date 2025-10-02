@@ -1,16 +1,29 @@
-# medora_new
 
-A new Flutter project.
+A comprehensive healthcare application with AI-powered symptom checking, emergency SOS alerts, and health tracking features.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+- **🔐 Authentication** - Secure login/register with Firebase Auth
+- **🏥 Patient Dashboard** - Health overview and quick actions
+- **📊 Health Tracking** - BP & Sugar monitoring with charts
+- **🤖 AI Symptom Checker** - Ayurvedic and home remedies suggestions
+- **🚨 SOS Emergency System** - Location-based emergency alerts
+- **👨‍⚕️ Doctor Portal** - Patient management and report analysis
+- **📱 Notifications** - Reminders and emergency alerts
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Flutter** - Cross-platform framework
+- **Firebase** - Backend services (Auth, Firestore, Storage)
+- **Provider** - State management
+- **Google Maps** - Location services
+- **Geolocator** - Location tracking
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📋 Prerequisites
+
+- Flutter SDK (>=3.4.0)
+- Dart SDK (>=3.4.0)
+- Android Studio / VS Code
+- Firebase Project
+
+   ```bash
+   git clone https://github.com/kavya267-git/medora-ai.git
+   cd medora

@@ -1,25 +1,59 @@
 name: medora_new
-description: Medora App
+description: A healthcare AI app with Firebase integration
 publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
+  sdk: '>=3.4.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.5
-  firebase_core: ^3.6.0
-  firebase_auth: ^5.3.1
-  cloud_firestore: ^5.6.12
+
+  # Firebase Core - Compatible versions
+  firebase_core: ^2.24.0
+  firebase_auth: ^4.17.2
+  cloud_firestore: ^4.8.2
+  
+  # Optional Firebase services (comment out if not needed)
+  firebase_storage: ^11.3.5
+  firebase_messaging: ^14.7.2
+  firebase_analytics: ^10.10.7
+
+  # Location & Maps
+  geolocator: ^11.0.1
+  geocoding: ^2.1.1
+
+  # State Management
+  provider: ^6.1.2
+
+  # UI & Design
+  cupertino_icons: ^1.0.8
+  flutter_spinkit: ^5.2.0
+  lottie: ^2.7.0
+  badges: ^3.0.1
+
+  # File & Media Handling
+  file_picker: ^8.0.0
+  image_picker: ^1.1.1
+  open_file: ^3.3.1
+
+  # Utilities
+  url_launcher: ^6.2.2
+  shared_preferences: ^2.3.2
+  permission_handler: ^11.0.1
+  timezone: ^0.10.1
+  flutter_local_notifications: ^19.4.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.3
+  flutter_lints: ^6.0.0
 
 flutter:
   uses-material-design: true
+  
   assets:
-    - assets/
+    - assets/images/
+    - assets/animations/
+    - assets/icons/
