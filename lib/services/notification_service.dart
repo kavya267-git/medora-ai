@@ -114,7 +114,7 @@ class NotificationService {
       details,
       payload: payload,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      dateInterpretation: DateInterpretation.absoluteTime,
+      // Removed dateInterpretation
     );
   }
 
@@ -151,8 +151,8 @@ class NotificationService {
       details,
       payload: 'medication_reminder',
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      dateInterpretation: DateInterpretation.absoluteTime,
       matchDateTimeComponents: DateTimeComponents.time,
+      // Removed dateInterpretation
     );
   }
 
@@ -184,8 +184,8 @@ class NotificationService {
       details,
       payload: 'bp_measurement',
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      dateInterpretation: DateInterpretation.absoluteTime,
       matchDateTimeComponents: DateTimeComponents.time,
+      // Removed dateInterpretation
     );
   }
 
@@ -230,8 +230,8 @@ class NotificationService {
       details,
       payload: 'sugar_measurement',
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      dateInterpretation: DateInterpretation.absoluteTime,
       matchDateTimeComponents: DateTimeComponents.time,
+      // Removed dateInterpretation
     );
   }
 
