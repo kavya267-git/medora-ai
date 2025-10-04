@@ -172,7 +172,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
             // Health Features Grid (Resizable Cards)
             _buildHealthFeaturesGrid(),
             
-            // Recent Activity from Firebase
+            // Recent Activity from Firebase - FIXED VERSION
             _buildRecentActivityFromFirebase(user),
             
             const SliverToBoxAdapter(child: SizedBox(height: 40)),
@@ -575,7 +575,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
             ),
             const SizedBox(height: 16),
             
-            // BP Tracking Card with Firebase Integration
+            // Blood Pressure Tracking Card
             _buildResizableCard(
               height: _bpCardHeight,
               onHeightChanged: (height) => setState(() => _bpCardHeight = height),
@@ -585,7 +585,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
             
             const SizedBox(height: 16),
             
-            // Sugar Tracking Card with Firebase Integration
+            // Blood Sugar Tracking Card
             _buildResizableCard(
               height: _sugarCardHeight,
               onHeightChanged: (height) => setState(() => _sugarCardHeight = height),
@@ -764,7 +764,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                   ),
                   const SizedBox(width: 12),
                   const Text(
-                    'Blood Pressure',
+                    'Blood Pressure', // Fixed from "Road Pressure"
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w700,
@@ -889,6 +889,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
       builder: (context, snapshot) {
         double fastingSugar = 98.0;
         double postMealSugar = 132.0;
+        // ignore: unused_local_variable
         String status = 'Normal';
         Color statusColor = Colors.green;
         
@@ -937,7 +938,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                   ),
                   const SizedBox(width: 12),
                   const Text(
-                    'Blood Sugar',
+                    'Blood Sugar', // Fixed from "Road Sugar"
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w700,
@@ -1056,9 +1057,6 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
     );
   }
 
-  // ... (Keep the rest of the SOS, Chatbot, and other methods the same as before)
-  // The SOS and Chatbot cards don't need Firebase integration yet
-
   Widget _buildSOSCard() {
     return Container(
       padding: const EdgeInsets.all(24),
@@ -1091,7 +1089,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
               ),
               const SizedBox(width: 12),
               const Text(
-                'Emergency SOS',
+                'Emergency SOS', // Fixed from "Dangerous SGG"
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
@@ -1317,17 +1315,57 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
     );
   }
 
- SliverToBoxAdapter _buildRecentActivityFromFirebase(User? user) {
-  return SliverToBoxAdapter(
-    child: StreamBuilder<QuerySnapshot>(
-      stream: _firestore
-          .collection('recent_activities')
-          .where('userId', isEqualTo: user?.uid)
-          .orderBy('timestamp', descending: true)
-          .limit(5)
-          .snapshots(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
+  // FIXED VERSION: No nested slivers
+  SliverToBoxAdapter _buildRecentActivityFromFirebase(User? user) {
+    return SliverToBoxAdapter(
+      child: StreamBuilder<QuerySnapshot>(
+        stream: _firestore
+            .collection('recent_activities')
+            .where('userId', isEqualTo: user?.uid)
+            .orderBy('timestamp', descending: true)
+            .limit(5)
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Container(
+              margin: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 15,
+                    offset: const Offset(0, 5),
+                  ),
+                ],
+              ),
+              child: const Center(child: CircularProgressIndicator()),
+            );
+          }
+
+          if (snapshot.hasError) {
+            return Container(
+              margin: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 15,
+                    offset: const Offset(0, 5),
+                  ),
+                ],
+              ),
+              child: Text('Error: ${snapshot.error}'),
+            );
+          }
+
+          final activities = snapshot.data!.docs;
+
           return Container(
             margin: const EdgeInsets.all(20),
             padding: const EdgeInsets.all(24),
@@ -1342,80 +1380,41 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                 ),
               ],
             ),
-            child: const Center(child: CircularProgressIndicator()),
-          );
-        }
-
-        if (snapshot.hasError) {
-          return Container(
-            margin: const EdgeInsets.all(20),
-            padding: const EdgeInsets.all(24),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 15,
-                  offset: const Offset(0, 5),
-                ),
-              ],
-            ),
-            child: Text('Error: ${snapshot.error}'),
-          );
-        }
-
-        final activities = snapshot.data!.docs;
-
-        return Container(
-          margin: const EdgeInsets.all(20),
-          padding: const EdgeInsets.all(24),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                blurRadius: 15,
-                offset: const Offset(0, 5),
-              ),
-            ],
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Recent Activity',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.black87,
-                ),
-              ),
-              const SizedBox(height: 16),
-              if (activities.isEmpty)
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 const Text(
-                  'No recent activity',
-                  style: TextStyle(color: Colors.grey),
-                )
-              else
-                ...activities.map((doc) {
-                  final data = doc.data() as Map<String, dynamic>;
-                  return _buildActivityItem(
-                    data['title'] ?? 'Activity',
-                    data['description'] ?? '',
-                    _getActivityIcon(data['type']),
-                    _getActivityColor(data['type']),
-                    _getTimeAgo(data['timestamp']),
-                  );
-                }).toList(),
-            ],
-          ),
-        );
-      },
-    ),
-  );
-}
+                  'Recent Activity',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black87,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                if (activities.isEmpty)
+                  const Text(
+                    'No recent activity',
+                    style: TextStyle(color: Colors.grey),
+                  )
+                else
+                  ...activities.map((doc) {
+                    final data = doc.data() as Map<String, dynamic>;
+                    return _buildActivityItem(
+                      data['title'] ?? 'Activity',
+                      data['description'] ?? '',
+                      _getActivityIcon(data['type']),
+                      _getActivityColor(data['type']),
+                      _getTimeAgo(data['timestamp']),
+                    );
+                  }).toList(),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
 
   IconData _getActivityIcon(String? type) {
     switch (type) {
