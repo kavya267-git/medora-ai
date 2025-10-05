@@ -12,7 +12,12 @@
           "package_name": "com.example.medora"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "643095045949-0etiaec0o7gdg70ntkjn4olinmce7pel.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDaTcBBeEOmpVdldwMqMpOqdsdJulOU_UE"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "643095045949-0etiaec0o7gdg70ntkjn4olinmce7pel.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "643095045949-1q75pfu62ooiv9ce61l0au31n1rhsc5s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.medoraNew"
+              }
+            }
+          ]
         }
       }
     },
@@ -31,7 +48,20 @@
           "package_name": "com.example.medora_new"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "643095045949-1em27kkur65ds298i0f7t6li5bnnqo9v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.medora_new",
+            "certificate_hash": "f1b072bd6494a0d75165d6153db1a5d11df887dd"
+          }
+        },
+        {
+          "client_id": "643095045949-0etiaec0o7gdg70ntkjn4olinmce7pel.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDaTcBBeEOmpVdldwMqMpOqdsdJulOU_UE"
@@ -39,7 +69,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "643095045949-0etiaec0o7gdg70ntkjn4olinmce7pel.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "643095045949-1q75pfu62ooiv9ce61l0au31n1rhsc5s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.medoraNew"
+              }
+            }
+          ]
         }
       }
     }
