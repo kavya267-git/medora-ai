@@ -4,57 +4,110 @@ class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
 
   @override
-  State<SplashPage> createState() => _SplashPageState();
+  State<SplashPage> createState() => splash();
 }
 
-class _SplashPageState extends State<SplashPage> {
+class splash extends State<SplashPage> 
+    with SingleTickerProviderStateMixin {
+  
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
   @override
   void initState() {
     super.initState();
-    _initializeApp();
+    
+    _controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
+    
+    _animation = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    );
+    
+    _controller.forward();
   }
 
-  Future<void> _initializeApp() async {
-    // Use explicit type for Future.delayed
-    await Future<void>.delayed(const Duration(seconds: 2));
-    
-    if (!mounted) return;
-    
-    // Navigate to login page
-    Navigator.pushReplacementNamed(context, '/login');
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: Theme.of(context).primaryColor,
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(
-              Icons.medical_services,
-              size: 80,
-              color: Colors.white,
-            ),
-            const SizedBox(height: 20),
-            Text(
-              'MEDORA',
-              style: TextStyle(
-                color: Colors.white.withAlpha(179), // Fixed opacity
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
+        child: ScaleTransition(
+          scale: _animation,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // App Logo
+              Container(
+                width: 120,
+                height: 120,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(24),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 20,
+                      offset: const Offset(0, 10),
+                    ),
+                  ],
+                ),
+                child: const Icon(
+                  Icons.medical_services,
+                  size: 60,
+                  color: Color(0xFF2563EB),
+                ),
               ),
-            ),
-            const SizedBox(height: 10),
-            const Text(
-              'Healthcare Assistant',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
+              
+              const SizedBox(height: 24),
+              
+              // App Name
+              const Text(
+                'MEDORA',
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  letterSpacing: 2,
+                ),
               ),
-            ),
-          ],
+              
+              const SizedBox(height: 8),
+              
+              // Tagline
+              const Text(
+                'AI-Powered Healthcare',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.white70,
+                  letterSpacing: 1,
+                ),
+              ),
+              
+              const SizedBox(height: 48),
+              
+              // Loading Indicator
+              SizedBox(
+                width: 40,
+                height: 40,
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    Colors.white.withOpacity(0.8),
+                  ),
+                  strokeWidth: 3,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
