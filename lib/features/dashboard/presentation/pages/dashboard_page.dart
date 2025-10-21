@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../emergency/emergency_page.dart';
+import '../../../chatbot/chatbot_page.dart';
 import '../../../../providers/auth_provider.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -47,7 +48,7 @@ class _PatientDashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return SingleChildScrollView(
       padding: const EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,7 +69,7 @@ class _PatientDashboard extends StatelessWidget {
           ),
           const SizedBox(height: 32),
 
-          // Emergency SOS Card (ACTIVE)
+          // Emergency SOS Card
           Card(
             elevation: 2,
             child: ListTile(
@@ -81,13 +82,13 @@ class _PatientDashboard extends StatelessWidget {
               trailing: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
-                  color: Colors.green[50],
+                  color: const Color(0xFFF0FDF4),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: const Text(
                   'ACTIVE',
                   style: TextStyle(
-                    color: Colors.green,
+                    color: Color(0xFF166534),
                     fontWeight: FontWeight.bold,
                     fontSize: 12,
                   ),
@@ -102,25 +103,69 @@ class _PatientDashboard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
+
+          // AI Health Assistant Card
+          Card(
+            elevation: 2,
+            child: ListTile(
+              leading: const Icon(Icons.medical_services, size: 40, color: Colors.green),
+              title: const Text(
+                'AI Health Assistant',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              subtitle: const Text('24/7 medical chatbot with Ayurvedic remedies'),
+              trailing: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFF0FDF4),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: const Text(
+                  'ACTIVE',
+                  style: TextStyle(
+                    color: Color(0xFF166534),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(builder: (context) => const ChatbotPage()),
+                );
+              },
+            ),
+          ),
+          const SizedBox(height: 16),
+
+          // Coming Soon Features
           _buildFeatureCard(
-            icon: Icons.medical_services,
-            title: 'AI Health Assistant',
-            description: '24/7 medical chatbot for symptom analysis',
+            icon: Icons.assignment,
+            title: 'Medical Records',
+            description: 'Secure storage and management of health reports',
             status: 'Coming Soon',
           ),
           const SizedBox(height: 16),
           _buildFeatureCard(
-            icon: Icons.assignment,
-            title: 'Report Analyzer',
-            description: 'AI-powered lab report analysis & insights',
+            icon: Icons.calendar_today,
+            title: 'Appointments',
+            description: 'Book doctor appointments and manage schedules',
+            status: 'Coming Soon',
+          ),
+          const SizedBox(height: 16),
+          _buildFeatureCard(
+            icon: Icons.monitor_heart,
+            title: 'Health Tracking',
+            description: 'Monitor BP, sugar, and vital parameters',
             status: 'Coming Soon',
           ),
           const SizedBox(height: 16),
           _buildFeatureCard(
             icon: Icons.nature,
             title: 'Ayurvedic Remedies',
-            description: 'Natural treatments & wellness recommendations',
-            status: 'Coming Soon',
+            description: 'Traditional treatments and wellness plans',
+            status: 'Integrated in AI Assistant',
           ),
         ],
       ),
@@ -155,9 +200,9 @@ class _PatientDashboard extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     description,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 14,
-                      color: Colors.grey[600],
+                      color: Colors.grey,
                     ),
                   ),
                 ],
@@ -166,13 +211,13 @@ class _PatientDashboard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
-                color: Colors.orange[50],
+                color: const Color(0xFFFFFBEB),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Text(
                 status,
                 style: const TextStyle(
-                  color: Colors.orange,
+                  color: Color(0xFFD97706),
                   fontWeight: FontWeight.bold,
                   fontSize: 12,
                 ),
