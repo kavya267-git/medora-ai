@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../emergency/emergency_page.dart';
 import '../../../../providers/auth_provider.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -66,13 +67,39 @@ class _PatientDashboard extends StatelessWidget {
                 ),
           ),
           const SizedBox(height: 32),
-          
-          // Coming Soon Features
-          _buildFeatureCard(
-            icon: Icons.emergency,
-            title: 'Emergency SOS',
-            description: 'Instant emergency alerts to contacts & hospitals',
-            status: 'Coming Soon',
+
+          // Emergency SOS Card (ACTIVE)
+          Card(
+            elevation: 2,
+            child: ListTile(
+              leading: const Icon(Icons.emergency, size: 40, color: Colors.red),
+              title: const Text(
+                'Emergency SOS',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              subtitle: const Text('Instant emergency alerts to contacts & hospitals'),
+              trailing: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                decoration: BoxDecoration(
+                  color: Colors.green[50],
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: const Text(
+                  'ACTIVE',
+                  style: TextStyle(
+                    color: Colors.green,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(builder: (context) => const EmergencyPage()),
+                );
+              },
+            ),
           ),
           const SizedBox(height: 16),
           _buildFeatureCard(
